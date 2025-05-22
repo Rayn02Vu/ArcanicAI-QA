@@ -55,7 +55,6 @@ for item in state.messages:
     with st.chat_message(item["role"]):
         st.markdown(item["content"])
 
-
 if not state.running:
     if new_prompt := st.chat_input("Send a message...", disabled=state.running):
         state.prompt = new_prompt
