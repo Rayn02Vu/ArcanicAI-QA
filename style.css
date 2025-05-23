@@ -1,0 +1,16 @@
+#MainMenu {
+    display: none !important;
+}
+
+.stMainBlockContainer {
+    padding-top: 60px !important;
+}
+
+.st-key-prompt {
+    text-align: center !important;
+}
+
+.st-key-chat_input .stChatInput {
+    font: 500 !important;
+    text-align: center !important;
+}
