@@ -12,28 +12,50 @@ client = Flowise(base_url=base_url, api_key=api_key)
 
 
 def page_setup():
-    avatar = "https://arcanic.ai/wp-content/uploads/2023/11/Arcanic_logo_black-1.png"
+    avatar = "./assets/logo-white.png"
+    
     st.set_page_config(
         page_title="Arcanic AI Chatbot",
         page_icon=avatar
     )
-    with open("./style.css") as f:
+    with open("./assets/style.css") as f:
         st.html(f"""<style>{f.read()}</style>""")
+    
+    
+    with st.container(key="center-1"):
+        col1, col2 = st.columns([2, 6], gap="medium", vertical_alignment="center")
+        with col1:
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.image("./assets/logo-white.png", width=80)
+        with col2:
+            st.title("Arcanic AI")
+            ui.badges(
+                badge_list=[
+                    ("Business", "secondary"), 
+                    ("Chatbot", "secondary"), 
+                    ("QA Chat", "destructive")
+                ],
+                class_name="flex gap-4"
+            )
         
-    col1, col2 = st.columns([1, 5], gap="medium", vertical_alignment="center")     
-    with col1:
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.image(avatar, width=95)
+    with st.sidebar:
+        st.markdown("""
+            <div class="sidebar-container">
+                <img src="https://arcanic.ai/wp-content/uploads/2023/11/Arcanic_logo_black-1.png" alt="Logo">
+                <h3>Arcanic AI</h3>
+            </div>
+        """, unsafe_allow_html=True)
+            
+        st.markdown("*Thúc đẩy đổi mới và phát triển bền vững thông qua các giải pháp ứng dụng trí tuệ nhân tạo.*")
         
-    with col2:
-        st.title("Arcanic AI")
-        ui.badges(
-            badge_list=[
-                ("Business", "secondary"), ("QA Chat", "destructive")
-            ],
-            class_name="flex gap-4"
+        st.markdown("---")
+        st.markdown("# Liên hệ")
+        st.link_button(
+            label="🌐 Website",
+            url="https://arcanic.ai",
+            type="primary"
         )
-
+        
 
 if "messages" not in state:
     state.messages = []
@@ -67,12 +89,17 @@ def generate_response(prompt):
                 state.running = False
                 
 
-with st.chat_message("assistant"):
+with st.chat_message("assistant", avatar="./assets/assistant.png"):
     st.write("Chào bạn! Tôi có thể giúp gì?")
 
 
 for item in state.messages:
-    with st.chat_message(item["role"]):
+    avatar = None
+    if item["role"] == "user":
+        avatar = "./assets/user.png"
+    if item["role"] == "assistant":
+        avatar = "./assets/assistant.png"
+    with st.chat_message(item["role"], avatar=avatar):
         st.markdown(item["content"])
 
 
@@ -86,7 +113,7 @@ if not state.running:
         st.rerun()
 
 if state.running:
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="./assets/assistant.png"):
         with st.spinner("Thinking..."):
             response = generate_response(state.prompt)
             full_response = st.write_stream(response)

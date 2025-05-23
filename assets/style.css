@@ -1,0 +1,67 @@
+html {
+    font-family: sans-serif !important;
+}
+
+
+#MainMenu {
+    display: none !important;
+}
+
+.stMainBlockContainer {
+    padding-top: 60px !important;
+}
+
+
+.st-key-chat_input .stChatInput {
+    font-size: large !important;
+    font: 500 !important;
+    text-align: center !important;
+}
+
+
+[data-testid="stChatMessageContent"] p {
+    font-size: 17.5px !important; 
+    font-weight: 500 !important;
+}
+
+
+[data-testid="stChatMessage"] img {
+    width: 35px !important;
+    height: 35px !important;
+}
+
+[data-testid="stChatInputTextArea"] {
+    font-size: 18px !important; 
+    font-weight: 500 !important;
+}
+
+.st-key-center-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-right: 15px;
+}
+.sidebar-container img {
+    height: 24px;
+    margin-right: 8px;
+}
+.sidebar-container h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .st-key-center-1 .stImage {
+    display: none;
+  }
+  .st-key-center-1 .stVerticalBlockBorderWrapper {
+    display: none;
+  }
+}
