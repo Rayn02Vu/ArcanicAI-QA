@@ -20,14 +20,14 @@ html {
 
 
 [data-testid="stChatMessageContent"] p {
-    font-size: 17.5px !important; 
+    font-size: 17px !important; 
     font-weight: 500 !important;
 }
 
 
 [data-testid="stChatMessage"] img {
-    width: 35px !important;
-    height: 35px !important;
+    width: 40px !important;
+    height: 40px !important;
 }
 
 [data-testid="stChatInputTextArea"] {
@@ -69,18 +69,37 @@ html {
     align-items: center;
 }
 
-.footer-lience {
-    position: fixed !important;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-    z-index: 9999;
+.title {
+    display: flex;
+    position: relative;
+    left: -0.5rem;
+    flex-direction: column;
+    
+    h1 {
+        position: relative;
+        top: -5px;
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
+    a {
+        position: relative;
+        top: -1.2rem;
+        text-underline-position: above;
+        text-decoration: none;
+        color: #000000;
+    }
 }
 
+
 @media screen and (max-width: 768px) {
+  .st-key-center-1 {
+    margin-left: 16px !important;  
+  }
+
+  .stMainBlockContainer {
+    padding-top: 10px !important;
+  }
+
   .st-key-center-1 .stImage {
     display: none;
   }

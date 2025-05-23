@@ -76,22 +76,16 @@ def sidebar_setup():
 
 
 with st.container(key="center-1"):
-    col1, col2 = st.columns([2, 6], gap="medium", vertical_alignment="center")
-    with col1:
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.image("./assets/logo-white.png", width=80)
-    with col2:
-        st.title("Aryan Chat")
-        ui.badges(
-            badge_list=[
-                ("Chatbot", "secondary"), 
-                ("Business", "secondary"), 
-                ("QA Chat", "destructive")
-            ],
-            class_name="flex gap-4"
-        )
+    st.markdown(f"""
+        <div class="title">
+            <h1>AryanChat</h1>
+            <a href="https://arcanic.ai" target="_blank">
+                @Sponsored by ArcanicAI
+            </a>
+        </div>
+    """, unsafe_allow_html=True)
         
-    
+        
 if "messages" not in state:
     state.messages = []
 if "running" not in state:
@@ -125,7 +119,7 @@ def generate_response(prompt):
                 state.running = False
                 
 
-with st.chat_message("assistant", avatar="./assets/assistant.png"):
+with st.chat_message("assistant", avatar="./assets/logo-white.png"):
     st.write("Chào bạn! Tôi có thể giúp gì?")
 
 
@@ -134,7 +128,7 @@ for item in state.messages:
     if item["role"] == "user":
         avatar = "./assets/user.png"
     if item["role"] == "assistant":
-        avatar = "./assets/assistant.png"
+        avatar = "./assets/logo-white.png"
     with st.chat_message(item["role"], avatar=avatar):
         st.markdown(item["content"])
 
@@ -149,7 +143,7 @@ if not state.running:
         st.rerun()
 
 if state.running:
-    with st.chat_message("assistant", avatar="./assets/assistant.png"):
+    with st.chat_message("assistant", avatar="./assets/logo-white.png"):
         with st.spinner("Thinking..."):
             response = generate_response(state.prompt)
             full_response = st.write_stream(response)
@@ -162,10 +156,3 @@ if state.running:
             state.prompt = ""
             st.rerun()
 
-st.markdown(f"""
-    <div class=".footer-lience">
-        <a href="https://arcanic.ai">
-            Sponsor by ArcanicAI
-        </a>
-    </div>
-""", unsafe_allow_html=True)
