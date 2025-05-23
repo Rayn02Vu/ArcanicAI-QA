@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+.streamlit
+secrets.toml
+
 # Distribution / packaging
 .Python
 build/
@@ -117,7 +120,6 @@ ipython_config.py
 .pdm-python
 .pdm-build/
 
-.streamlit
 secrets.toml
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/

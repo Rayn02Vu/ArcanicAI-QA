@@ -11,7 +11,6 @@ html {
     padding-top: 60px !important;
 }
 
-
 .st-key-chat_input .stChatInput {
     font-size: large !important;
     font: 500 !important;
@@ -28,6 +27,13 @@ html {
 [data-testid="stChatMessage"] img {
     width: 40px !important;
     height: 40px !important;
+}
+
+
+[data-testid="stChatInputSubmitButton"] svg {
+    color: blue !important;
+    width: 27px !important;
+    height: 90% !important;
 }
 
 [data-testid="stChatInputTextArea"] {
