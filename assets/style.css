@@ -52,9 +52,32 @@ html {
     height: 24px;
     margin-right: 8px;
 }
-.sidebar-container h3 {
+.sidebar-container h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+.button-row {
+    display: flex;
+    position: absolute;
+    top: -2.68rem;
+    right: 1rem;
+    flex-direction: row;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-lience {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    z-index: 9999;
 }
 
 @media screen and (max-width: 768px) {

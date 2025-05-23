@@ -10,53 +10,88 @@ api_key = st.secrets["API_KEY"]
 
 client = Flowise(base_url=base_url, api_key=api_key)
 
+avatar = "./assets/logo-white.png"
 
-def page_setup():
-    avatar = "./assets/logo-white.png"
+st.set_page_config(
+    page_title="Arcanic AI Chatbot",
+    page_icon=avatar
+)
+with open("./assets/style.css") as f:
+    st.html(f"""<style>{f.read()}</style>""")
+
     
-    st.set_page_config(
-        page_title="Arcanic AI Chatbot",
-        page_icon=avatar
-    )
-    with open("./assets/style.css") as f:
-        st.html(f"""<style>{f.read()}</style>""")
-    
-    
-    with st.container(key="center-1"):
-        col1, col2 = st.columns([2, 6], gap="medium", vertical_alignment="center")
-        with col1:
-            st.markdown("<br>", unsafe_allow_html=True)
-            st.image("./assets/logo-white.png", width=80)
-        with col2:
-            st.title("Arcanic AI")
-            ui.badges(
-                badge_list=[
-                    ("Business", "secondary"), 
-                    ("Chatbot", "secondary"), 
-                    ("QA Chat", "destructive")
-                ],
-                class_name="flex gap-4"
-            )
-        
+def sidebar_setup():
     with st.sidebar:
         st.markdown("""
             <div class="sidebar-container">
                 <img src="https://arcanic.ai/wp-content/uploads/2023/11/Arcanic_logo_black-1.png" alt="Logo">
-                <h3>Arcanic AI</h3>
+                <h2>
+                    Arcanic AI
+                </h2>
             </div>
         """, unsafe_allow_html=True)
             
         st.markdown("*Thúc đẩy đổi mới và phát triển bền vững thông qua các giải pháp ứng dụng trí tuệ nhân tạo.*")
         
         st.markdown("---")
-        st.markdown("# Liên hệ")
+        st.markdown("# 🌐 Website")
         st.link_button(
-            label="🌐 Website",
+            label=":material/home: ArcanicAI",
             url="https://arcanic.ai",
-            type="primary"
+            type="primary",
+            use_container_width=True
+        )
+        st.link_button(
+            label=":material/sell: Products",
+            url="https://arcanic.ai/arcanic-platform/",
+            type="secondary",
+            use_container_width=True
+        )
+        st.link_button(
+            label=":material/info: About us",
+            url="https://arcanic.ai/about/",
+            type="secondary",
+            use_container_width=True
+        )
+
+        st.markdown("---")
+        st.markdown("# 📢 Contact")
+
+        links = f""""""
+        for src, url in [
+            ("https://img.icons8.com/?size=100&id=8818&format=png&color=000000", "https://www.facebook.com/arcanic.ai.official"), 
+            ("https://img.icons8.com/?size=100&id=8808&format=png&color=000000", "https://www.linkedin.com/company/arcanic-ai"),
+            ("https://img.icons8.com/?size=100&id=16733&format=png&color=000000", "https://wa.me/+84986962997")
+        ]:
+            links += f'''
+                <a href="{url}">
+                    <img src="{src}" width=25/>
+                </a>
+            '''
+        st.markdown(f"""
+                <div class="button-row">
+                    {links}
+                </div>
+        """, unsafe_allow_html=True)
+
+
+with st.container(key="center-1"):
+    col1, col2 = st.columns([2, 6], gap="medium", vertical_alignment="center")
+    with col1:
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.image("./assets/logo-white.png", width=80)
+    with col2:
+        st.title("Aryan Chat")
+        ui.badges(
+            badge_list=[
+                ("Chatbot", "secondary"), 
+                ("Business", "secondary"), 
+                ("QA Chat", "destructive")
+            ],
+            class_name="flex gap-4"
         )
         
-
+    
 if "messages" not in state:
     state.messages = []
 if "running" not in state:
@@ -66,7 +101,8 @@ if "prompt" not in state:
 if "sessionId" not in state:
     state.sessionId = ""
 
-page_setup()
+
+sidebar_setup()
 
 
 def generate_response(prompt):
@@ -126,4 +162,10 @@ if state.running:
             state.prompt = ""
             st.rerun()
 
-
+st.markdown(f"""
+    <div class=".footer-lience">
+        <a href="https://arcanic.ai">
+            Sponsor by ArcanicAI
+        </a>
+    </div>
+""", unsafe_allow_html=True)
